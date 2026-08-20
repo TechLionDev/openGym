@@ -1,30 +1,10 @@
 name: opengym
 
 services:
-  # One-time: download the exercise images + GIFs into ./media (skipped if already there).
-  # ~140 MB, from github.com/hasaneyldrm/exercises-dataset (CC).
-  media:
-    image: alpine/git
-    volumes:
-      - ./media/img:/out/img
-      - ./media/gif:/out/gif
-    entrypoint: ["/bin/sh", "-c"]
-    command:
-      - |
-        if [ -z "$$(ls -A /out/img 2>/dev/null)" ]; then
-          echo "↓ Downloading exercise media (~140 MB, one time)…"
-          git clone --depth 1 https://github.com/hasaneyldrm/exercises-dataset /tmp/ds
-          cp /tmp/ds/images/*.jpg /out/img/ && cp /tmp/ds/videos/*.gif /out/gif/
-          echo "✓ Exercise media ready ($$(ls /out/img | wc -l) images)."
-        else
-          echo "✓ Exercise media already present — skipping download."
-        fi
-    restart: "no"
-
   # Passkey auth + per-user data (Node, no framework).
-  # image: prebuilt (docker compose pull). build: from source (docker compose up --build).
+  # Prebuilt GHCR images (ghcr.io/duartesantos8/*) are gone with the deleted account —
+  # `docker compose up` builds everything from source (api/ + root Dockerfile).
   api:
-    image: ghcr.io/duartesantos8/opengym-api:latest
     build: ./api
     restart: unless-stopped
     env_file: .env.example
@@ -35,16 +15,13 @@ services:
       - ./data:/data         # users, passkeys, per-user state, session secret — BACK THIS UP
 
   # Builds the React frontend (multi-stage) and serves it, proxying /api → api
-  # and the exercise media from the shared volume. Single origin for passkeys.
+  # and the exercise media (committed in-repo at ./media) — single origin for passkeys.
   web:
-    image: ghcr.io/duartesantos8/opengym-web:latest
     build:
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
-      media:
-        condition: service_completed_successfully
       api:
         condition: service_started
     ports:
