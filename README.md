@@ -1,4 +1,6 @@
 <div align="center">
+> **🔄 Restored mirror.** The original `DuarteSantos8/openGym` was deleted by its author in August 2026. This is a faithful recovery (AGPL-3.0 — all credit to the original author), preserved and re-published by **TechLionDev** so the project isn't lost. See [NOTICE.md](NOTICE.md).
+
 
 <img src="assets/banner.png" alt="openGym" width="720">
 
@@ -19,9 +21,9 @@ No account on someone else's server, no subscription, no ads. Just `docker compo
 ![Docker](https://img.shields.io/badge/Docker-compose-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![No tracking](https://img.shields.io/badge/telemetry-none-f472b6?style=flat-square)
 <br>
-![GitHub last commit](https://img.shields.io/github/last-commit/DuarteSantos8/openGym?style=flat-square)
-[![GitHub stars](https://img.shields.io/github/stars/DuarteSantos8/openGym?style=flat-square)](https://github.com/DuarteSantos8/openGym/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/DuarteSantos8/openGym?style=flat-square)](https://github.com/DuarteSantos8/openGym/issues)
+![GitHub last commit](https://img.shields.io/github/last-commit/TechLionDev/openGym?style=flat-square)
+[![GitHub stars](https://img.shields.io/github/stars/TechLionDev/openGym?style=flat-square)](https://github.com/TechLionDev/openGym/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/TechLionDev/openGym?style=flat-square)](https://github.com/TechLionDev/openGym/issues)
 
 </div>
 
